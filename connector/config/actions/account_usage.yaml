@@ -1,0 +1,29 @@
+schema: action/1
+title: Account Usage and Credits
+name: account_usage
+description: 'Credit balance and subscription usage of the account that owns the API key. Free. The echoed apiKey field is redacted by the connector.'
+inputs:
+  type: object
+  properties: {}
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/whoisapi/usage
+  method: get

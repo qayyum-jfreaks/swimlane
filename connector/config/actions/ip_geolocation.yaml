@@ -1,0 +1,34 @@
+schema: action/1
+title: IP Geolocation
+name: ip_geolocation
+description: 'Location, network (ASN, company), country metadata and currency of an IP address (credits: 1).'
+inputs:
+  type: object
+  properties:
+    ip:
+      title: ip
+      description: 'Public IPv4 or IPv6 address. Private/reserved addresses are rejected with 423.'
+      type: string
+  required:
+    - ip
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/geolocation
+  method: get

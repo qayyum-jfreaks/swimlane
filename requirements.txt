@@ -1,0 +1,6 @@
+# Pinned for reproducible builds (SEC-002). urllib3 is kept on the 1.26.x line
+# for compatibility with the FIPS runner base image. The Swimlane base image
+# already provides requests at runtime; these pins make a standalone build and
+# the local test harness deterministic.
+requests==2.31.0
+urllib3==1.26.20

@@ -1,0 +1,51 @@
+schema: action/1
+title: Domain Availability Check
+name: domain_availability
+description: 'Whether a domain can be registered, optionally with available alternatives (credits: 1, plus 1 per 5 suggestions).'
+inputs:
+  type: object
+  properties:
+    domain:
+      title: domain
+      description: 'Domain to check.'
+      type: string
+    sug:
+      title: sug
+      description: 'true to also return suggested alternative domains.'
+      type: boolean
+      default: false
+    count:
+      title: count
+      description: 'Number of suggestions when sug=true (1 to 100).'
+      type: integer
+      default: 5
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - domain
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/domain/availability
+  method: get

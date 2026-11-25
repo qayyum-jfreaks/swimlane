@@ -1,0 +1,41 @@
+schema: action/1
+title: IP WHOIS Lookup
+name: ip_whois
+description: 'Regional Internet Registry registration of an IP address (network ranges, organization, contacts, routes) (credits: 1).'
+inputs:
+  type: object
+  properties:
+    ip:
+      title: ip
+      description: 'Public IPv4 or IPv6 address.'
+      type: string
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - ip
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/ip-whois
+  method: get

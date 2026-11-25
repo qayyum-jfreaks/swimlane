@@ -1,0 +1,52 @@
+schema: action/1
+title: Bulk Domain Availability Check
+name: bulk_domain_availability
+description: 'Availability of up to 100 domains in one request. Send domainNames, or a domain label with a tld list (credits: 1 per domain).'
+inputs:
+  type: object
+  properties:
+    domainNames:
+      title: domainNames
+      description: 'Full domain names to check (up to 100).'
+      type: array
+      items:
+        type: string
+    tld:
+      title: tld
+      description: 'TLDs to check the domain label across (use with the domain parameter).'
+      type: array
+      items:
+        type: string
+    domain:
+      title: domain
+      description: 'Label to check across the TLDs in the tld list (TLD form only).'
+      type: string
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/domain/availability
+  method: post

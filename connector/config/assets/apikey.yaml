@@ -1,0 +1,41 @@
+schema: asset/1
+name: apikey
+title: API Key Authentication
+description: Authenticates with WhoisFreaks feeds service using an API key
+inputs:
+  type: object
+  properties:
+    url:
+      title: URL
+      description: WhoisFreaks stream/feeds host URL (files API)
+      type: string
+      default: https://files.whoisfreaks.com
+    api_url:
+      title: Lookup API URL
+      description: WhoisFreaks real-time lookup host URL (used by WHOIS/DNS/SSL/IP/ASN lookup actions)
+      type: string
+      default: https://api.whoisfreaks.com
+    X-API-KEY:
+      title: API Key
+      description: WhoisFreaks API Key
+      type: string
+      format: password
+    verify_ssl:
+      title: Verify SSL Certificates
+      description: Verify SSL certificate
+      type: boolean
+      default: true
+    http_proxy:
+      title: HTTP(s) Proxy
+      description: A proxy to route requests through.
+      type: string
+  required:
+    - url
+    - X-API-KEY
+meta:
+  asset_url_key: url
+  auth_type: api_key
+  security:
+    type: apiKey
+    name: X-API-KEY
+    in: header

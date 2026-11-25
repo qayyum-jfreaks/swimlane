@@ -1,0 +1,45 @@
+vendor: WhoisFreaks
+product: WhoisFreaks
+name: whoisfreaks
+schema: connector/1
+author: WhoisFreaks
+bugs: https://github.com/swimlane/t_whoisfreaks/issues
+iconImage: ../image/logo.png
+description: >-
+  WhoisFreaks connector for Swimlane Turbine: real-time WHOIS, DNS, SSL, IP
+  geolocation, IP security, ASN and domain reputation lookups, plus bulk
+  Newly Registered Domain and phishing/malware/spam threat-feed streams.
+homepage: https://whoisfreaks.com
+keywords:
+  - whoisfreaks
+  - threat
+  - nrd
+  - whois
+  - dns
+  - ssl
+  - ip
+  - geolocation
+  - asn
+  - reputation
+  - enrichment
+  - security
+  - intelligence
+license: Apache-2.0
+meta:
+  imageRepository: quay.io/swimlane-connectors/whoisfreaks
+  private: false
+  publishConfig:
+    access: public
+  buildConfig:
+    template: python_311_definition_fips
+  block_short_desc_update: false
+  block_readme_update: false
+  block_external_md_update: false
+  block_external_yml_update: false
+  is_fedramp_ready: false
+repository: https://github.com/swimlane/t_whoisfreaks
+title: WhoisFreaks
+version: 1.0.0
+runConfig:
+  inputs:
+    type: stdin

@@ -1,0 +1,34 @@
+schema: action/1
+title: Domain Reputation
+name: domain_reputation
+description: 'Real-time risk assessment of a domain: verdict, DGA score, trust score, email auth and threat-intel context (credits: 5).'
+inputs:
+  type: object
+  properties:
+    domainName:
+      title: domainName
+      description: 'Domain to assess (must contain a dot).'
+      type: string
+  required:
+    - domainName
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1/domain/security
+  method: get

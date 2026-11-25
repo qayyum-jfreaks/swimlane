@@ -1,0 +1,41 @@
+schema: action/1
+title: ASN WHOIS Lookup
+name: asn_whois
+description: 'Registration, routes, upstreams, downstreams and peers of an Autonomous System (credits: 1).'
+inputs:
+  type: object
+  properties:
+    asn:
+      title: asn
+      description: 'AS number with or without the as prefix, for example as13335.'
+      type: string
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - asn
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/asn-whois
+  method: get

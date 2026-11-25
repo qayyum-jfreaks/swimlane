@@ -1,0 +1,368 @@
+schema: action/1
+title: Get Feed Status
+name: get_feed_status
+description: Feed availability windows
+inputs:
+  type: object
+  properties: {}
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+      examples:
+        - '200'
+    reason:
+      title: Reason
+      examples:
+        - Availability windows for every data product.
+      type: string
+    json_body:
+      title: Json Body
+      type: object
+      properties:
+        newly:
+          title: newly
+          type: object
+          properties:
+            gtld:
+              title: gtld
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            cctld:
+              title: cctld
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            cleaned_gtld:
+              title: cleaned_gtld
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            cleaned_cctld:
+              title: cleaned_cctld
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            dns:
+              title: dns
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+        threat_feed:
+          title: threat_feed
+          type: object
+          properties:
+            phishing:
+              title: phishing
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            malware:
+              title: malware
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+            spam:
+              title: spam
+              type: object
+              required:
+                - last_update
+                - available_from
+              properties:
+                last_update:
+                  title: last_update
+                  type: string
+                available_from:
+                  title: available_from
+                  type: string
+        expired:
+          title: expired
+          type: object
+          required:
+            - last_update
+            - available_from
+          properties:
+            last_update:
+              title: last_update
+              type: string
+            available_from:
+              title: available_from
+              type: string
+        cleaned_expired:
+          title: cleaned_expired
+          type: object
+          required:
+            - last_update
+            - available_from
+          properties:
+            last_update:
+              title: last_update
+              type: string
+            available_from:
+              title: available_from
+              type: string
+        dropped:
+          title: dropped
+          type: object
+          required:
+            - last_update
+            - available_from
+          properties:
+            last_update:
+              title: last_update
+              type: string
+            available_from:
+              title: available_from
+              type: string
+        dropped_with_backlinks:
+          title: dropped_with_backlinks
+          type: object
+          required:
+            - last_update
+            - available_from
+          properties:
+            last_update:
+              title: last_update
+              type: string
+            available_from:
+              title: available_from
+              type: string
+        database_updates:
+          title: database_updates
+          type: object
+          properties:
+            subdomains:
+              title: subdomains
+              type: object
+              properties:
+                daily:
+                  title: daily
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                weekly:
+                  title: weekly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                monthly:
+                  title: monthly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+            dns:
+              title: dns
+              type: object
+              properties:
+                daily:
+                  title: daily
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                weekly:
+                  title: weekly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                monthly:
+                  title: monthly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+            domain_whois:
+              title: domain_whois
+              type: object
+              properties:
+                daily:
+                  title: daily
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                weekly:
+                  title: weekly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                monthly:
+                  title: monthly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+            ip_whois:
+              title: ip_whois
+              type: object
+              properties:
+                daily:
+                  title: daily
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                weekly:
+                  title: weekly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+                monthly:
+                  title: monthly
+                  type: object
+                  required:
+                    - last_update
+                    - available_from
+                  properties:
+                    last_update:
+                      title: last_update
+                      type: string
+                    available_from:
+                      title: available_from
+                      type: string
+meta:
+  endpoint: /v3.4/status
+  method: get

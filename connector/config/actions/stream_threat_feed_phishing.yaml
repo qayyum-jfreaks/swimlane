@@ -1,0 +1,45 @@
+schema: action/1
+title: Stream Phishing Threat Feed
+name: stream_threat_feed_phishing
+description: Phishing threat feed
+inputs:
+  type: object
+  properties:
+    parameters:
+      title: Parameters
+      type: object
+      properties:
+        date:
+          title: date
+          type: string
+        limit:
+          title: limit
+          type: integer
+        offset:
+          title: offset
+          type: integer
+      required:
+        - date
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+      examples:
+        - '200'
+    reason:
+      title: Reason
+      examples:
+        - |
+          One CSV page of threat-feed rows: a header row on every page, then
+          one `ThreatFeedRecord` per row. A JSON body instead of CSV means an
+          error.
+      type: string
+    response_text:
+      title: Response Text
+      type: string
+meta:
+  endpoint: /v3.4/stream/threat-feed/phishing
+  method: get

@@ -1,0 +1,60 @@
+schema: action/1
+title: Subdomains Lookup
+name: subdomains
+description: 'Known subdomains of a domain with first and last seen dates (credits: 2).'
+inputs:
+  type: object
+  properties:
+    domain:
+      title: domain
+      description: 'Root domain.'
+      type: string
+    after:
+      title: after
+      description: 'Only subdomains seen on or after this day (YYYY-MM-DD).'
+      type: string
+    before:
+      title: before
+      description: 'Only subdomains seen before this day (YYYY-MM-DD).'
+      type: string
+    status:
+      title: status
+      description: 'Only active or only inactive subdomains. Omit for both.'
+      type: string
+      enum:
+        - active
+        - inactive
+    page:
+      title: page
+      description: 'Page number, starting at 1.'
+      type: integer
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - domain
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/subdomains
+  method: get

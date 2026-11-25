@@ -1,0 +1,69 @@
+schema: action/1
+title: Reverse WHOIS Lookup
+name: reverse_whois
+description: 'Domains whose WHOIS record matches a value. Provide exactly one of keyword, email, owner or company (credits: 5 per page).'
+inputs:
+  type: object
+  properties:
+    keyword:
+      title: keyword
+      description: 'Term to match anywhere in the WHOIS record.'
+      type: string
+    email:
+      title: email
+      description: 'Registrant email address to match.'
+      type: string
+    owner:
+      title: owner
+      description: 'Registrant name to match.'
+      type: string
+    company:
+      title: company
+      description: 'Registrant organization to match.'
+      type: string
+    mode:
+      title: mode
+      description: 'default returns 50 full records per page; mini returns 100 compact records per page.'
+      type: string
+      enum:
+        - default
+        - mini
+      default: default
+    exact:
+      title: exact
+      description: 'true for an exact match, false for a contains match.'
+      type: boolean
+      default: false
+    page:
+      title: page
+      description: 'Page number, starting at 1.'
+      type: integer
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/whois/reverse
+  method: get

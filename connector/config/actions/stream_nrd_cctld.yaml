@@ -1,0 +1,49 @@
+schema: action/1
+title: Stream NRD ccTLD Domains
+name: stream_nrd_cctld
+description: Newly registered ccTLD domains
+inputs:
+  type: object
+  properties:
+    parameters:
+      title: Parameters
+      type: object
+      properties:
+        date:
+          title: date
+          type: string
+        whois:
+          title: whois
+          type: boolean
+        limit:
+          title: limit
+          type: integer
+        offset:
+          title: offset
+          type: integer
+      required:
+        - date
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+      examples:
+        - '200'
+    reason:
+      title: Reason
+      examples:
+        - |
+          One page of newly registered domains. `text/plain` when
+          `whois=false` (one domain per line, no header); `text/csv` when
+          `whois=true` (header row on every page, then one `NrdWhoisRecord`
+          per row). A JSON body instead of text means an error.
+      type: string
+    response_text:
+      title: Response Text
+      type: string
+meta:
+  endpoint: /v3.3/stream/domainer/cctld
+  method: get

@@ -1,0 +1,51 @@
+schema: action/1
+title: SSL Certificate Lookup
+name: ssl_lookup
+description: 'Live TLS certificate of a host, optionally with the full chain and raw OpenSSL output (credits: 1, plus 1 per 2 certs with chain=true).'
+inputs:
+  type: object
+  properties:
+    domainName:
+      title: domainName
+      description: 'Host to fetch the certificate for.'
+      type: string
+    chain:
+      title: chain
+      description: 'true to return the full chain (end-user, intermediate, root).'
+      type: boolean
+      default: false
+    sslRaw:
+      title: sslRaw
+      description: 'true to include the raw OpenSSL output.'
+      type: boolean
+      default: false
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - domainName
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/ssl/live
+  method: get

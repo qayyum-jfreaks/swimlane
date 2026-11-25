@@ -1,0 +1,78 @@
+schema: action/1
+title: Ingest Stream Feeds
+name: ingest_stream_feeds
+description: Status-first ingestion across enabled WhoisFreaks NRD and threat feeds with automated date resolution, subscription error handling, and pagination checkpoints.
+inputs:
+  type: object
+  properties:
+    enabled_feeds:
+      title: Enabled Feeds
+      description: List of feeds to ingest (phishing, malware, spam, gtld, cctld).
+      type: array
+      items:
+        type: string
+        enum:
+          - phishing
+          - malware
+          - spam
+          - gtld
+          - cctld
+      default:
+        - phishing
+        - malware
+        - spam
+    date:
+      title: Date
+      description: Target feed date in YYYY-MM-DD format. If omitted, the latest available date from the status endpoint is used.
+      type: string
+    limit:
+      title: Page Limit
+      description: Number of records to fetch per page.
+      type: integer
+      default: 1000
+    offset:
+      title: Offset
+      description: Starting row offset for pagination.
+      type: integer
+      default: 0
+    max_pages:
+      title: Maximum Pages
+      description: >-
+        Maximum pages to fetch per feed in this run. 0 or null is treated as 1
+        (a single page). Hard-capped at 50 pages per run to keep one action
+        output bounded; drive larger backfills by looping with the returned
+        checkpoint, or by scheduling the per-feed stream actions.
+      type: integer
+      default: 1
+    nrd_whois:
+      title: NRD Include WHOIS
+      description: Include full WHOIS registration data for NRD feeds (true for CSV, false for domain-only).
+      type: boolean
+      default: false
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    status:
+      title: Status
+      type: string
+    total_records:
+      title: Total Records
+      type: integer
+    feeds_summary:
+      title: Feeds Summary
+      type: object
+    records:
+      title: Records
+      type: array
+      items:
+        type: object
+    checkpoint:
+      title: Next Checkpoint
+      type: object
+meta:
+  endpoint: /v3.4/status
+  method: get

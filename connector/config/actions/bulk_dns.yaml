@@ -1,0 +1,58 @@
+schema: action/1
+title: Bulk Live DNS Lookup
+name: bulk_dns
+description: 'Live DNS for up to 100 domains and IP addresses in one request (credits: 1 per item).'
+inputs:
+  type: object
+  properties:
+    domainNames:
+      title: domainNames
+      description: 'List of domain names (up to 100 items in total with ipAddresses).'
+      type: array
+      items:
+        type: string
+    ipAddresses:
+      title: ipAddresses
+      description: 'List of IP addresses (up to 100 items in total with domainNames).'
+      type: array
+      items:
+        type: string
+    type:
+      title: type
+      description: 'Record types: all, or a comma-separated list of A, AAAA, MX, NS, TXT, SOA, SPF, CNAME.'
+      type: string
+      default: all
+    cname_depth:
+      title: cname_depth
+      description: 'How many CNAME hops to follow before collecting records (0 to 4).'
+      type: integer
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - type
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/dns/bulk/live
+  method: post

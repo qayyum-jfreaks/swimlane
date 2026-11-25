@@ -1,0 +1,29 @@
+schema: action/1
+title: Rotate Secondary API Key
+name: rotate_api_key
+description: 'Issues a new secondary API key and returns it as text. The primary key is unchanged. Treat the response as a secret; it is not logged.'
+inputs:
+  type: object
+  properties: {}
+  required: []
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    response_text:
+      title: Response Text
+      type: string
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/api-key/rotate
+  method: get

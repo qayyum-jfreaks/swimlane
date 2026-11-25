@@ -1,0 +1,59 @@
+schema: action/1
+title: Live DNS Lookup
+name: live_dns
+description: 'Current DNS records of a domain, or the PTR record of an IP. Provide domainName or ipAddress (credits: 1).'
+inputs:
+  type: object
+  properties:
+    domainName:
+      title: domainName
+      description: 'Domain to resolve. Required unless ipAddress is sent.'
+      type: string
+    ipAddress:
+      title: ipAddress
+      description: 'IPv4 or IPv6 address for a reverse (PTR) lookup. Required unless domainName is sent.'
+      type: string
+    type:
+      title: type
+      description: 'Record types: all, or a comma-separated list of A, AAAA, MX, NS, TXT, SOA, SPF, CNAME (PTR for ipAddress).'
+      type: string
+      default: all
+    cnameDepth:
+      title: cnameDepth
+      description: 'How many CNAME hops to follow before collecting records (0 to 4).'
+      type: integer
+    relativeRecords:
+      title: relativeRecords
+      description: 'Include records of CNAME targets (true, default) or only the queried name (false).'
+      type: boolean
+      default: true
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - type
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/dns/live
+  method: get

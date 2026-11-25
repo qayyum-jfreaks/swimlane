@@ -1,0 +1,36 @@
+schema: action/1
+title: Bulk IP Security / Reputation
+name: bulk_ip_security
+description: 'Reputation of up to 100 IP addresses in one request with the v1.0 signal set (credits: 1 per IP).'
+inputs:
+  type: object
+  properties:
+    ips:
+      title: ips
+      description: 'List of up to 100 IP addresses.'
+      type: array
+      items:
+        type: string
+  required:
+    - ips
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v1.0/security
+  method: post

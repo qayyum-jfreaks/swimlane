@@ -1,0 +1,43 @@
+schema: action/1
+title: Bulk Live WHOIS Lookup
+name: bulk_whois
+description: 'Live WHOIS for up to 100 domains in one request (credits: 1 per successful domain).'
+inputs:
+  type: object
+  properties:
+    domainNames:
+      title: domainNames
+      description: 'List of up to 100 domain names.'
+      type: array
+      items:
+        type: string
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - domainNames
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/bulkwhois/live
+  method: post

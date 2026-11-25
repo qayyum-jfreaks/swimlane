@@ -1,0 +1,41 @@
+schema: action/1
+title: Live WHOIS Lookup
+name: live_whois
+description: 'Current WHOIS record of a domain, fetched in real time (credits: 1).'
+inputs:
+  type: object
+  properties:
+    domainName:
+      title: domainName
+      description: 'Domain name, for example whoisfreaks.com.'
+      type: string
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - domainName
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.0/whois/live
+  method: get

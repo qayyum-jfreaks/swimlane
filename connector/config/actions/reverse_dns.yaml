@@ -1,0 +1,70 @@
+schema: action/1
+title: Reverse DNS Lookup
+name: reverse_dns
+description: 'Domains whose DNS record of the given type holds a value, 100 per page (credits: 5 per page).'
+inputs:
+  type: object
+  properties:
+    value:
+      title: value
+      description: 'Record value to search for (IP, CIDR, host name or text).'
+      type: string
+    type:
+      title: type
+      description: 'Record type that holds the value. PTR is not supported.'
+      type: string
+      enum:
+        - a
+        - aaaa
+        - cname
+        - mx
+        - ns
+        - soa
+        - txt
+    exact:
+      title: exact
+      description: 'true for an exact match, false to allow wildcards in value.'
+      type: boolean
+      default: true
+    sort:
+      title: sort
+      description: 'Order by the date the record was last seen.'
+      type: string
+      enum:
+        - asc
+        - desc
+    page:
+      title: page
+      description: 'Page number, starting at 1.'
+      type: integer
+    format:
+      title: format
+      description: 'Response format: json (default) or xml.'
+      type: string
+      enum:
+        - json
+        - xml
+  required:
+    - value
+    - type
+output:
+  type: object
+  properties:
+    status_code:
+      title: Status Code
+      type: number
+    reason:
+      title: Reason
+      type: string
+    success:
+      title: Success
+      type: boolean
+    json_body:
+      title: Json Body
+      type: object
+    error_message:
+      title: Error Message
+      type: string
+meta:
+  endpoint: /v2.1/dns/reverse
+  method: get
